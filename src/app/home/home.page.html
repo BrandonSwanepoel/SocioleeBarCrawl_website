@@ -1,0 +1,99 @@
+<ion-content [fullscreen]="true" class="landing-page">
+  <div class="landing-container">
+    <div class="hero-section">
+      <div class="logo-container">
+        <!-- Placeholder for a Logo or Icon if available, for now just text or styled -->
+        <h1 class="brand-title">Sociolee <span class="highlight">Bar Crawl</span></h1>
+      </div>
+      
+      <p class="tagline">The Ultimate Nightlife Experience.<br>Launching first in <span class="location-highlight">STELLIES</span></p>
+
+      <div class="app-features">
+        <h2>Gamify Your Night Out</h2>
+        <div class="feature-row">
+            <div class="feature-item">
+                <div class="icon-box"><ion-icon name="camera-outline"></ion-icon></div>
+                <p>Snap Yourself<br>Completing Quests</p>
+            </div>
+            <div class="feature-item">
+                <div class="icon-box"><ion-icon name="lock-open-outline"></ion-icon></div>
+                <p>Unlock<br>Next Bar</p>
+            </div>
+             <div class="feature-item">
+                <div class="icon-box"><ion-icon name="images-outline"></ion-icon></div>
+                <p>Live<br>Feed</p>
+            </div>
+             <div class="feature-item">
+                <div class="icon-box"><ion-icon name="ribbon-outline"></ion-icon></div>
+                <p>Earn<br>Badges</p>
+            </div>
+        </div>
+        <p class="description-text">
+            Turn your night into a game. Snap photos to complete fun challenges, unlock new bars and earn badges all while watching the live feed of the crawl!
+        </p>
+      </div>
+
+      <div class="glass-card">
+        <div *ngIf="!successMessage" class="signup-content">
+          <h2>Don't Get Left Behind</h2>
+          <p>Stellies nightlife is evolving. Enter your email to get notified when the app launches.<br><span class="urgent-text">🔥 Early access is limited.</span></p>
+
+          <div class="prize-banner">
+            <ion-icon name="trophy-outline"></ion-icon>
+            <span><strong>Win Prizes</strong> with each crawl</span>
+          </div>
+          
+          <div class="store-icons">
+            <div class="store-item">
+              <ion-icon name="logo-apple"></ion-icon>
+              <span>App Store</span>
+            </div>
+            <div class="store-divider">|</div>
+            <div class="store-item">
+              <ion-icon name="logo-google-playstore"></ion-icon>
+              <span>Google Play</span>
+            </div>
+          </div>
+
+          <form [formGroup]="notifyForm" (ngSubmit)="subscribe()">
+            <div class="input-group">
+              <ion-item lines="none" class="custom-input">
+                <ion-input 
+                  formControlName="email" 
+                  type="email" 
+                  placeholder="Enter your email"
+                  inputmode="email"
+                  aria-label="Email Address">
+                </ion-input>
+              </ion-item>
+              
+              <div class="error-msg" *ngIf="notifyForm.get('email')?.invalid && notifyForm.get('email')?.touched">
+                Please enter a valid email.
+              </div>
+            </div>
+
+            <ion-button expand="block" type="submit" [disabled]="notifyForm.invalid" class="glow-button">
+              Secure My Invite
+              <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+            </ion-button>
+          </form>
+        </div>
+
+        <div *ngIf="successMessage" class="success-content">
+          <div class="success-icon">
+            <ion-icon name="beer-outline"></ion-icon>
+          </div>
+          <h3>Cheers! 🍻</h3>
+          <p>{{ successMessage }}</p>
+          <ion-button fill="clear" (click)="successMessage = null" color="light">
+            Register another email
+          </ion-button>
+        </div>
+      </div>
+    </div>
+    
+    <footer class="footer">
+      <p>&copy; 2024 Sociolee. Drink Responsibly.</p>
+    </footer>
+  </div>
+</ion-content>
