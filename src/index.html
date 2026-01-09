@@ -3,10 +3,31 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Sociolee Bar Crawl</title>
+  <title>Sociolee Bar Crawl - The Ultimate Nightlife Game</title>
 
   <base href="/" />
 
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Join the ultimate gamified bar crawl in Stellenbosch! Complete quests, earn badges, and win prizes. Sign up for early access to the Sociolee app now." />
+  <meta name="keywords" content="Stellies Bar Crawl, Stellenbosch Nightlife, Sociolee, Student Party App, Bar Quests, Gamified Nightlife, Drink Specials Stellies" />
+  <meta name="author" content="Sociolee" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sociolee.co.za/" />
+  <meta property="og:title" content="Sociolee Bar Crawl - Gamify Your Night Out" />
+  <meta property="og:description" content="Don't get left behind. Join the waitlist for the ultimate gamified nightlife experience in Stellies. Snap quests, unlock bars, and win real prizes." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://sociolee.co.za/" />
+  <meta property="twitter:title" content="Sociolee Bar Crawl - The Ultimate Nightlife Game" />
+  <meta property="twitter:description" content="Join the waitlist for the gamified bar crawl app launching in Stellies. Drink, Play, Conquer." />
+  <meta property="twitter:image" content="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Ionic / PWA Meta -->
   <meta name="color-scheme" content="light dark" />
   <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="format-detection" content="telephone=no" />
@@ -14,13 +35,99 @@
 
   <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
 
-  <!-- add to homescreen for ios -->
+  <!-- Add to Homescreen for iOS -->
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Sociolee" />
+
+  <!-- Structured Data for Google (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Sociolee Bar Crawl",
+    "operatingSystem": "iOS, Android",
+    "applicationCategory": "mSocialNetworkingApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "ZAR"
+    },
+    "description": "A gamified bar crawl application launching in Stellenbosch. Complete quests, earn badges, and win prizes.",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "88"
+    }
+  }
+  </script>
+  <style>
+    /* Critical Loader Styles */
+    body { margin: 0; background: #1a1a2e; }
+    #app-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #1a1a2e;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.5s ease-out;
+    }
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      border-top-color: #00f3ff;
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 20px;
+    }
+    .loader-text {
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes pulse {
+      0% { opacity: 0.5; }
+      50% { opacity: 1; }
+      100% { opacity: 0.5; }
+    }
+  </style>
 </head>
 
 <body>
+  <div id="app-loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">SOCIOLEE</div>
+  </div>
   <app-root></app-root>
+  
+  <script>
+    // Remove loader when app-root has content (Angular loaded)
+    const observer = new MutationObserver((mutations) => {
+      const appRoot = document.querySelector('app-root');
+      if (appRoot && appRoot.children.length > 0) {
+        const loader = document.getElementById('app-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.remove(), 500);
+          observer.disconnect();
+        }
+      }
+    });
+    observer.observe(document.querySelector('app-root'), { childList: true });
+  </script>
 </body>
 
 </html>
